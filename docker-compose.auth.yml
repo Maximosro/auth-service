@@ -10,6 +10,8 @@ services:
       SPRING_DATASOURCE_PASSWORD: devpass
       JWT_PRIVATE_KEY: /keys/private.pem
       JWT_PUBLIC_KEY: /keys/public.pem
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     volumes:
       - ./keys:/keys
     restart: unless-stopped
