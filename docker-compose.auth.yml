@@ -1,0 +1,15 @@
+services:
+  auth-service:
+    build: .
+    container_name: auth-service
+    ports:
+      - "8091:8091"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://host.docker.internal:5432/devdb
+      SPRING_DATASOURCE_USERNAME: dev
+      SPRING_DATASOURCE_PASSWORD: devpass
+      JWT_PRIVATE_KEY: /keys/private.pem
+      JWT_PUBLIC_KEY: /keys/public.pem
+    volumes:
+      - ./keys:/keys
+    restart: unless-stopped
